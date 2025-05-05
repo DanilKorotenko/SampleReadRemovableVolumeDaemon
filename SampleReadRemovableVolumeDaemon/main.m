@@ -7,10 +7,12 @@
 
 #import <Foundation/Foundation.h>
 
-int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
-    }
+#import "RemovableVolumeReader.h"
+
+int main(int argc, const char * argv[])
+{
+    RemovableVolumeReader *reader = [[RemovableVolumeReader alloc] init];
+    [reader start];
+    dispatch_main();
     return 0;
 }
