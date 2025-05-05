@@ -13,6 +13,6 @@ int main(int argc, const char * argv[])
 {
     RemovableVolumeReader *reader = [[RemovableVolumeReader alloc] init];
     [reader start];
-    dispatch_main();
+    [[NSRunLoop currentRunLoop] run];
     return 0;
 }
