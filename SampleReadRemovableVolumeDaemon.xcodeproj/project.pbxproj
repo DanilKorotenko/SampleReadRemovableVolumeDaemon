@@ -9,12 +9,12 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		DA42693D2DC8FA690072DE01 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -22,9 +22,22 @@
 		DA42693F2DC8FA690072DE01 /* SampleReadRemovableVolumeDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SampleReadRemovableVolumeDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		DAD5BE2E2DCA1DD60095C44C /* Exceptions for "SampleReadRemovableVolumeDaemon" folder in "Copy Files" phase from "SampleReadRemovableVolumeDaemon" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = DA42693D2DC8FA690072DE01 /* CopyFiles */;
+			membershipExceptions = (
+				com.danilkorotenko.SampleReadRemovableVolume.plist,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DA4269412DC8FA690072DE01 /* SampleReadRemovableVolumeDaemon */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DAD5BE2E2DCA1DD60095C44C /* Exceptions for "SampleReadRemovableVolumeDaemon" folder in "Copy Files" phase from "SampleReadRemovableVolumeDaemon" target */,
+			);
 			path = SampleReadRemovableVolumeDaemon;
 			sourceTree = "<group>";
 		};
