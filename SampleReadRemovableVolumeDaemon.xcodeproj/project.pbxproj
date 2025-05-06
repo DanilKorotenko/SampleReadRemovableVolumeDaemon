@@ -27,7 +27,12 @@
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
 			buildPhase = DA42693D2DC8FA690072DE01 /* CopyFiles */;
 			membershipExceptions = (
+				check.sh,
 				com.danilkorotenko.SampleReadRemovableVolume.plist,
+				install.sh,
+				start.sh,
+				stop.sh,
+				uninstall.sh,
 			);
 		};
 /* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
