@@ -245,8 +245,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				DEVELOPMENT_TEAM = QBPW9LPK8E;
 				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/SampleReadRemovableVolumeDaemon/info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.danilkorotenko.SampleReadRemovableVolume;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -255,8 +258,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				DEVELOPMENT_TEAM = QBPW9LPK8E;
 				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/SampleReadRemovableVolumeDaemon/info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.danilkorotenko.SampleReadRemovableVolume;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

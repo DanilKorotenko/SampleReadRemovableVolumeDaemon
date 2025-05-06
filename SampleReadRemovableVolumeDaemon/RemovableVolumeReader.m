@@ -21,7 +21,14 @@
     if (descDict)
     {
         NSDictionary *diskDescription = (__bridge NSDictionary *)(descDict);
-        volumePathURL = [diskDescription objectForKey:(NSString *)kDADiskDescriptionVolumePathKey];
+
+        NSNumber *isRemovable = [diskDescription objectForKey:
+            (NSString *)kDADiskDescriptionMediaRemovableKey];
+        if ([isRemovable boolValue])
+        {
+            volumePathURL = [diskDescription objectForKey:
+                (NSString *)kDADiskDescriptionVolumePathKey];
+        }
         CFRelease(descDict);
     }
     return volumePathURL;
@@ -37,7 +44,7 @@
     return self;
 }
 
-void DiskDescriptionChangedCallback(DADiskRef diskRef, CFArrayRef aKeys, void *context)
+void DiskAppearedCallback(DADiskRef diskRef, void *context)
 {
     NSURL *volumePathURL = [RemovableVolumeReader volumePathForDisk:diskRef];
     if (nil == volumePathURL || 0 == volumePathURL.path.length)
@@ -49,14 +56,36 @@ void DiskDescriptionChangedCallback(DADiskRef diskRef, CFArrayRef aKeys, void *c
     [reader readFilesOnVolume:volumePathURL];
 }
 
+void DiskDescriptionChangedCallback(DADiskRef diskRef, CFArrayRef aKeys, void *context)
+{
+    NSURL *volumePathURL = [RemovableVolumeReader volumePathForDisk:diskRef];
+    if (nil == volumePathURL || 0 == volumePathURL.path.length)
+    {
+        return;
+    }
+
+    DiskAppearedCallback(diskRef, context);
+}
+
 - (void)start
 {
+    CFMutableDictionaryRef matching = CFDictionaryCreateMutable(
+        kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks,
+        &kCFTypeDictionaryValueCallBacks);
+
+    CFDictionarySetValue(matching, kDADiskDescriptionMediaRemovableKey, kCFBooleanTrue);
+
+    DARegisterDiskAppearedCallback(self->_session, kDADiskDescriptionMatchVolumeMountable,
+        DiskAppearedCallback, (__bridge void *)self);
+
     DARegisterDiskDescriptionChangedCallback(self->_session,
         kDADiskDescriptionMatchVolumeMountable, kDADiskDescriptionWatchVolumePath,
         DiskDescriptionChangedCallback, (__bridge void *)self);
 
     DASessionScheduleWithRunLoop(self->_session, CFRunLoopGetCurrent(),
         kCFRunLoopCommonModes);
+
+    CFRelease(matching);
 }
 
 - (void)readFilesOnVolume:(NSURL *)aVolumePathURL
